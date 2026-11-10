@@ -121,18 +121,23 @@ const Orders = () => {
     },
   ];
 
-
   return (
     <div className="container-fluid bg-light min-vh-100 py-5">
       <div className="container">
-  
         {/* Header */}
         <div className="bg-white rounded-4 shadow-sm p-4 mb-4 border-start border-danger border-5">
           <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-              <span className="badge bg-danger mb-2">
-                ADMIN PANEL
-              </span>
+              <span className="badge bg-danger mb-2">ADMIN PANEL</span>
+
+              <a
+                href="/products"
+                className=" btn btn-danger ms-3 fw-bold"
+                // style={{ background: "#174477" }}
+              >
+                <i className="bi bi-box-seam me-2"></i>Products
+              </a>
+
               <h2 className="fw-bold text-dark mb-2">
                 <i className="fa-solid fa-user-shield text-danger me-2"></i>
                 Панель администратора
@@ -141,17 +146,15 @@ const Orders = () => {
                 Управление заказами и контроль доставки
               </p>
             </div>
-  
+
             <div className="bg-danger bg-opacity-10 rounded-4 p-3 text-center">
               <i className="fa-solid fa-cart-shopping text-danger fs-3"></i>
-              <h3 className="fw-bold text-danger mb-0 mt-2">
-                {orders.length}
-              </h3>
+              <h3 className="fw-bold text-danger mb-0 mt-2">{orders.length}</h3>
               <small className="text-secondary">Всего заказов</small>
             </div>
           </div>
         </div>
-  
+
         {/* Statistics */}
         <div className="row g-3 mb-5">
           <div className="col-6 col-lg-3">
@@ -167,7 +170,7 @@ const Orders = () => {
               </div>
             </div>
           </div>
-  
+
           <div className="col-6 col-lg-3">
             <div className="card border-0 shadow-sm rounded-4 h-100">
               <div className="card-body d-flex align-items-center gap-3">
@@ -176,14 +179,14 @@ const Orders = () => {
                 </div>
                 <div>
                   <h3 className="fw-bold mb-0">
-                    {orders.filter(o => o.status === "processing").length}
+                    {orders.filter((o) => o.status === "processing").length}
                   </h3>
                   <small className="text-secondary">В обработке</small>
                 </div>
               </div>
             </div>
           </div>
-  
+
           <div className="col-6 col-lg-3">
             <div className="card border-0 shadow-sm rounded-4 h-100">
               <div className="card-body d-flex align-items-center gap-3">
@@ -192,14 +195,14 @@ const Orders = () => {
                 </div>
                 <div>
                   <h3 className="fw-bold mb-0">
-                    {orders.filter(o => o.status === "delivery").length}
+                    {orders.filter((o) => o.status === "delivery").length}
                   </h3>
                   <small className="text-secondary">Доставка</small>
                 </div>
               </div>
             </div>
           </div>
-  
+
           <div className="col-6 col-lg-3">
             <div className="card border-0 shadow-sm rounded-4 h-100">
               <div className="card-body d-flex align-items-center gap-3">
@@ -208,7 +211,7 @@ const Orders = () => {
                 </div>
                 <div>
                   <h3 className="fw-bold mb-0">
-                    {orders.filter(o => o.status === "completed").length}
+                    {orders.filter((o) => o.status === "completed").length}
                   </h3>
                   <small className="text-secondary">Завершено</small>
                 </div>
@@ -216,19 +219,19 @@ const Orders = () => {
             </div>
           </div>
         </div>
-  
+
         {/* Orders title */}
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h4 className="fw-bold mb-0">
             <i className="fa-solid fa-receipt text-danger me-2"></i>
             Список заказов
           </h4>
-  
+
           <span className="badge bg-danger rounded-pill px-3 py-2">
             {orders.length} заказов
           </span>
         </div>
-  
+
         {/* Orders */}
         {orders.length === 0 ? (
           <div className="alert alert-warning text-center rounded-4 py-5 shadow-sm">
@@ -241,26 +244,26 @@ const Orders = () => {
             {orders.map((order) => (
               <div className="col-md-6 col-xl-4" key={order.id}>
                 <div className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-  
                   {/* Card Header */}
                   <div className="card-header bg-danger text-white border-0 p-3">
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <small className="opacity-75">НОМЕР ЗАКАЗА</small>
-                        <h4 className="fw-bold mb-0">
-                          #{order.id}
-                        </h4>
+                        <h4 className="fw-bold mb-0">#{order.id}</h4>
                       </div>
-  
-                      <span className={`badge ${getStatusBadge(order.status).className} rounded-pill px-3 py-2`}>
+
+                      <span
+                        className={`badge ${
+                          getStatusBadge(order.status).className
+                        } rounded-pill px-3 py-2`}
+                      >
                         {getStatusBadge(order.status).text}
                       </span>
                     </div>
                   </div>
-  
+
                   {/* Card Body */}
                   <div className="card-body p-4">
-  
                     <div className="d-flex align-items-center gap-3 mb-4">
                       <div className="bg-danger bg-opacity-10 text-danger rounded-3 p-3">
                         <i className="fa-solid fa-user fs-5"></i>
@@ -270,17 +273,19 @@ const Orders = () => {
                         <strong>{order.customerName}</strong>
                       </div>
                     </div>
-  
+
                     <div className="d-flex align-items-center gap-3 mb-4">
                       <div className="bg-danger bg-opacity-10 text-danger rounded-3 p-3">
                         <i className="fa-solid fa-phone fs-5"></i>
                       </div>
                       <div>
-                        <small className="text-secondary d-block">Телефон</small>
+                        <small className="text-secondary d-block">
+                          Телефон
+                        </small>
                         <strong>{order.customerPhone}</strong>
                       </div>
                     </div>
-  
+
                     <div className="d-flex align-items-center gap-3 mb-4">
                       <div className="bg-danger bg-opacity-10 text-danger rounded-3 p-3">
                         <i className="fa-solid fa-location-dot fs-5"></i>
@@ -290,85 +295,93 @@ const Orders = () => {
                         <strong className="text-break">{order.address}</strong>
                       </div>
                     </div>
-  
+
                     <div className="d-flex align-items-center gap-3 mb-4">
                       <div className="bg-danger bg-opacity-10 text-danger rounded-3 p-3">
                         <i className="fa-solid fa-weight-hanging fs-5"></i>
                       </div>
                       <div>
-                        <small className="text-secondary d-block">Вес товара</small>
+                        <small className="text-secondary d-block">
+                          Вес товара
+                        </small>
                         <strong>{order.weight}</strong>
                       </div>
                     </div>
 
-                    
-{/* Заказанные товары */}
-<div className="card border-0 bg-light rounded-4 mb-4">
-  <div className="card-body p-3">
+                    {/* Заказанные товары */}
+                    <div className="card border-0 bg-light rounded-4 mb-4">
+                      <div className="card-body p-3">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                          <h6 className="fw-bold mb-0">
+                            <i className="fa-solid fa-box-open text-danger me-2"></i>
+                            Заказанные товары
+                          </h6>
 
-    <div className="d-flex justify-content-between align-items-center mb-3">
-      <h6 className="fw-bold mb-0">
-        <i className="fa-solid fa-box-open text-danger me-2"></i>
-        Заказанные товары
-      </h6>
+                          <span className="badge bg-danger rounded-pill">
+                            {order.items?.length || 0} товаров
+                          </span>
+                        </div>
 
-      <span className="badge bg-danger rounded-pill">
-        {order.items?.length || 0} товаров
-      </span>
-    </div>
+                        {order.items && order.items.length > 0 ? (
+                          order.items.map((item, index) => (
+                            <div
+                              key={item.id || index}
+                              className="d-flex justify-content-between align-items-center border-bottom py-3"
+                            >
+                              <div className="d-flex align-items-center gap-2">
+                                {item.image && (
+                                  <img
+                                    src={item.image}
+                                    alt={item.title || item.name}
+                                    className="rounded-3"
+                                    style={{
+                                      width: "55px",
+                                      height: "55px",
+                                      objectFit: "cover",
+                                    }}
+                                  />
+                                )}
 
-    {order.items && order.items.length > 0 ? (
-      order.items.map((item, index) => (
-        <div
-          key={item.id || index}
-          className="d-flex justify-content-between align-items-center border-bottom py-3"
-        >
-          <div className="d-flex align-items-center gap-2">
+                                <div>
+                                  <strong className="d-block">
+                                    {item.title ||
+                                      item.name ||
+                                      item.description}
+                                  </strong>
 
-            {item.image && (
-              <img
-                src={item.image}
-                alt={item.title || item.name}
-                className="rounded-3"
-                style={{
-                  width: "55px",
-                  height: "55px",
-                  objectFit: "cover"
-                }}
-              />
-            )}
+                                  <small className="text-muted">
+                                    {item.count || 1} шт. ×{" "}
+                                    {Number(item.price || 0).toLocaleString(
+                                      "ru-RU"
+                                    )}{" "}
+                                    сом
+                                  </small>
+                                </div>
+                              </div>
 
-            <div>
-              <strong className="d-block">
-                {item.title || item.name || item.description}
-              </strong>
+                              <strong className="text-success text-nowrap">
+                                {(
+                                  Number(item.price || 0) *
+                                  Number(item.count || 1)
+                                ).toLocaleString("ru-RU")}{" "}
+                                сом
+                              </strong>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-muted text-center mb-0 py-2">
+                            Товары не найдены
+                          </p>
+                        )}
+                      </div>
+                    </div>
 
-              <small className="text-muted">
-                {item.count || 1} шт. × {Number(item.price || 0).toLocaleString("ru-RU")} сом
-              </small>
-            </div>
-
-          </div>
-
-          <strong className="text-success text-nowrap">
-            {(Number(item.price || 0) * Number(item.count || 1)).toLocaleString("ru-RU")} сом
-          </strong>
-        </div>
-      ))
-    ) : (
-      <p className="text-muted text-center mb-0 py-2">
-        Товары не найдены
-      </p>
-    )}
-
-  </div>
-</div>
-
-  
                     {order.totalAmount && (
                       <div className="bg-success bg-opacity-10 rounded-4 p-3 d-flex justify-content-between align-items-center">
                         <div>
-                          <small className="text-secondary">Общая стоимость</small>
+                          <small className="text-secondary">
+                            Общая стоимость
+                          </small>
                           <h4 className="text-success fw-bold mb-0">
                             {order.totalAmount} сом
                           </h4>
@@ -377,20 +390,18 @@ const Orders = () => {
                       </div>
                     )}
                   </div>
-  
+
                   {/* Card Footer */}
                   <div className="card-footer bg-white border-top p-3">
                     <label className="form-label fw-bold small">
                       <i className="fa-solid fa-rotate me-2 text-danger"></i>
                       Изменить статус
                     </label>
-  
+
                     <select
                       className="form-select rounded-3 mb-3"
                       value={order.status || "new"}
-                      onChange={(e) =>
-                        updateStatus(order.id, e.target.value)
-                      }
+                      onChange={(e) => updateStatus(order.id, e.target.value)}
                     >
                       {statuses.map((status) => (
                         <option key={status.value} value={status.value}>
@@ -398,7 +409,7 @@ const Orders = () => {
                         </option>
                       ))}
                     </select>
-  
+
                     <div className="row g-2">
                       <div className="col-6">
                         <a
@@ -409,7 +420,7 @@ const Orders = () => {
                           Edit
                         </a>
                       </div>
-  
+
                       <div className="col-6">
                         <a
                           href={`/orders/${order.id}`}
@@ -419,7 +430,7 @@ const Orders = () => {
                           Details
                         </a>
                       </div>
-  
+
                       <div className="col-12">
                         <button
                           className="btn btn-outline-danger w-100 rounded-3"
@@ -431,18 +442,14 @@ const Orders = () => {
                       </div>
                     </div>
                   </div>
-  
                 </div>
               </div>
             ))}
           </div>
         )}
-  
       </div>
     </div>
   );
-  
-  
 };
 
 export default Orders;
